@@ -35,7 +35,7 @@
             <div class="col-md-4 ">
                 <div class="withdrow status">
                     <h5>Whithdrow</h5>
-                    <h2>$ 00</h2>
+                    <h2>$ <span id="currentwidthdrow">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4 ">
@@ -50,13 +50,13 @@
             <div class="col-md-6">
                 <div class="submit-area ">
                     <h4>Deopsit</h4>
-                    <input type="text" class="form-control" placeholder="dolor you want to withdrow" id="Enterdeposit"><br>
+                    <input type="text" class="form-control" id="Enterdeposit" placeholder="Enter YOur deposit"><br>
                     <button class="btn btn-success" id="addiposit">Doposit</button></div>
             </div>
             <div class="col-md-6">
                 <div class="submit-area ">
                     <h4>Withdrow</h4>
-                    <input id="withdrowamount" type="text " class="form-control"><br>
+                    <input id="withdrowamount" type="text " class="form-control" placeholder="dolor you want to withdrow"><br>
                     <button id="addwithdrow" class="btn btn-success">Withdrow</button></div>
             </div>
         </div>
@@ -79,24 +79,8 @@
         const diposit = document.getElementById('addiposit');
         diposit.addEventListener('click', function() {
 
-
-
-            const depositAmount = document.getElementById('Enterdeposit').value;
-            const deopositfloar = parseFloat(depositAmount);
-
-
-
-            // const currentdeposit = document.getElementById('currentdeposit').innerText;
-            // const correntDepositNumber = parseFloat(currentdeposit);
-            // const total = correntDepositNumber + deopositfloar;
-            // document.getElementById('currentdeposit').innerText = total;
-
-
-
-
-
-            document.getElementById('Enterdeposit').value = '';
-
+            const deopositfloar = getinputNumber('Enterdeposit')
+            document.getElementById("Enterdeposit").value = " ";
 
 
             updateNumber("TotalBlance", deopositfloar)
@@ -104,18 +88,18 @@
         })
         const whithdrowbtn = document.getElementById('addwithdrow');
         whithdrowbtn.addEventListener('click', function() {
-            const withdooeNumber = getInputNumber("withdrowamount");
-            console.log(withdooeNumber)
+            const whithdorowamount = getinputNumber("withdrowamount");
+            // const whithdrowNum = parseFloat(whithdorowamount);
+            updateNumber("currentwidthdrow", whithdorowamount)
+            updateNumber("TotalBlance", -1 * whithdorowamount)
+            document.getElementById("withdrowamount").value = " ";
         })
 
-        function getInputNumber() {
-            const whithdorowamount = document.getElementById("withdrowamount").value;
-
-            const withdooeNumber = parseFloat(withdrowamount)
-            return withdrowNumber;
+        function getinputNumber(id) {
+            const Amount = document.getElementById(id).value;
+            const whithdrowNum = parseFloat(Amount);
+            return whithdrowNum
         }
-
-
 
         // withdrow btn evenhandlear 
         function updateNumber(id, deopositfloar) {
@@ -126,6 +110,20 @@
 
         }
     </script>
+
+
+    <!-- 
+// const depositAmount = document.getElementById('Enterdeposit').value;
+// const deopositfloar = parseFloat(depositAmount);
+
+
+
+// const currentdeposit = document.getElementById('currentdeposit').innerText;
+// const correntDepositNumber = parseFloat(currentdeposit);
+// const total = correntDepositNumber + deopositfloar;
+// document.getElementById('currentdeposit').innerText = total;
+ -->
+
 </body>
 
 </html>
